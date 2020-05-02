@@ -1,7 +1,7 @@
 {
   "name": "simple-gulp-boilerplate",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple boilerplate to get a project started",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,10 +11,26 @@
     "url": "git+https://github.com/jsguerra/simple-gulp-boilerplate.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jose Guerra",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jsguerra/simple-gulp-boilerplate/issues"
   },
-  "homepage": "https://github.com/jsguerra/simple-gulp-boilerplate#readme"
+  "homepage": "https://github.com/jsguerra/simple-gulp-boilerplate#readme",
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/register": "^7.9.0",
+    "autoprefixer": "^9.7.6",
+    "browser-sync": "^2.26.7",
+    "cssnano": "^4.1.10",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "node-sass": "^4.14.0"
+  }
 }
