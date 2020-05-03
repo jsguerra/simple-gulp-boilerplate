@@ -38,7 +38,11 @@ sass/
 |
 `– main.scss              // Main Sass file
 */
+@import 'vendors/bootstrap-reboot';
+
+$grey: #f9f9f9;
+
 body {
-  background-color: greenyellow;
-  color: red;
+  background-color: $grey;
+  color: #242424;
 }
