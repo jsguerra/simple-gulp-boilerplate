@@ -14,7 +14,8 @@ sass.compiler = require('node-sass');
 // Set js variables
 const babel = require('gulp-babel'),
       rename = require('gulp-rename'),
-      uglify = require('gulp-uglify');
+      uglify = require('gulp-uglify'),
+      imagemin = require('gulp-imagemin');
   
 // Set browser sync variable
 const browserSync = require('browser-sync').create();
@@ -23,6 +24,8 @@ const browserSync = require('browser-sync').create();
 const source = './src',
       scss = source + '/sass/',
       js = source + '/js/',
+      imgSrc = source + '/images/',
+      fontSrc = source + '/fonts/',
       app = './app';
 
 // Styles task
@@ -77,6 +80,23 @@ const scripts = (cb) => {
   cb();
 }
 
+// Images task
+const imageTask = (cb) => {
+  return src(imgSrc + '*')
+    .pipe(imagemin())
+    .pipe(dest(app + '/images/'));
+
+  cb();
+}
+
+// Fonts task
+const fontTask = (cb) => {
+  return src(fontSrc + '*')
+    .pipe(dest(app + '/fonts/'));
+    
+  cb();
+}
+
 // HTML task
 const htmlTask = (cb) => {
   return src(source + '/**/*.html')
@@ -99,6 +119,8 @@ const startServer = (cb) => {
 const watchTask = (cb) => {
   watch([scss + '**/*.scss'], styles);
   watch([js + '**/*.js'], scripts).on('change', browserSync.reload);
+  watch([imgSrc + '*'], imageTask).on('change', browserSync.reload);
+  watch([fontSrc + '*'], fontTask).on('change', browserSync.reload);
   watch([source + '/**/*.html'], htmlTask).on('change', browserSync.reload);
 
   cb();
@@ -106,6 +128,6 @@ const watchTask = (cb) => {
 
 // Exports
 exports.default = series(
-  parallel(styles, scripts, htmlTask),
+  parallel(styles, scripts, imageTask, fontTask, htmlTask),
   parallel(startServer, watchTask)
 );
